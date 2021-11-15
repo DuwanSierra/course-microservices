@@ -1,0 +1,44 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceItemsApplication<microservice-items>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.jeffdev.microserviceitems.MicroserviceItemsApplication",
+            "projectName": "microservice-items",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EurekaApplication<microservice-eureka>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.jeffdev.microservice.eureka.EurekaApplication",
+            "projectName": "microservice-eureka",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceProductsApplication<microservice-products>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.jeffdev.microserviceproducts.MicroserviceProductsApplication",
+            "projectName": "microservice-products",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceGatewayServerApplication<microservice-gateway-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.jeffdev.microservicegatewayserver.MicroserviceGatewayServerApplication",
+            "projectName": "microservice-gateway-server",
+            "args": ""
+        }
+    ]
+}

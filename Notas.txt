@@ -1,0 +1,10 @@
+Caracteristicas
+
+	1. Función única
+	2. Independiente
+	3. Registro
+	4. Autoescalado y agilidad
+	5. Confiabilidad y tolerancia a fallos
+	6. Balanceo de cargas
+	8. Configuración centralizada
+	9. 

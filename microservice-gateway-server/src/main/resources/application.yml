@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    discovery:      enabled: true
+    gateway:  
+      discovery:        locator:          lower-case-service-id: true
+      routes:
+      - id: microservice-products
+        uri: lb://microservice-products
+        predicates:          - Path=/api/products/**
+        filters:        - StripPrefix=2
+        - name: Ejemplo
+          args:
+            mensaje: Hola mi mensaje personalizado
+            cookieNombre: usuario
+            cookieValor: DuwanSierra
+      - id: microservice-items
+        uri: lb://microservice-items
+        predicates:
+          - Path=/api/items/**
+        filters:
+        - StripPrefix=2
+              
