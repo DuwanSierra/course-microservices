@@ -1,13 +1,41 @@
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 6
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 20s
+        permitted-number-of-calls-in-half-open-state: 4
+    instances:
+      products:
+        base-config: default
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 2s
+      instances:
+        products:
+          base-config: default
 spring:
   cloud:
-    discovery:      enabled: true
+    discovery:
+      enabled: true
     gateway:  
-      discovery:        locator:          lower-case-service-id: true
+      discovery:
+        locator:
+          lower-case-service-id: true
       routes:
       - id: microservice-products
         uri: lb://microservice-products
-        predicates:          - Path=/api/products/**
-        filters:        - StripPrefix=2
+        predicates:
+          - Path=/api/products/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: products
+            statusCodes: 500,400
+            fallbackUri: forward:/api/items/item/getItem2?id=1&quantity=1
+        - StripPrefix=2
         - name: Ejemplo
           args:
             mensaje: Hola mi mensaje personalizado
@@ -19,4 +47,5 @@ spring:
           - Path=/api/items/**
         filters:
         - StripPrefix=2
-              
+    
+          
