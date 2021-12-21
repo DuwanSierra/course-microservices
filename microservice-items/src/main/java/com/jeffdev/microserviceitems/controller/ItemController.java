@@ -1,13 +1,16 @@
 package com.jeffdev.microserviceitems.controller;
 
-import java.util.Date;
+import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
+import com.jeffdev.commons.entity.Product;
 import com.jeffdev.microserviceitems.comunication.interfaces.IProductService;
 import com.jeffdev.microserviceitems.models.Item;
-import com.jeffdev.microserviceitems.models.Product;
 
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.core.env.Environment;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("item")
+@RefreshScope
 public class ItemController {
 
     @Autowired
@@ -29,14 +33,30 @@ public class ItemController {
 
     @Autowired
     ReactiveCircuitBreakerFactory cbFactory;
-    
-    
+
+    @Value("${configuration.texto}")
+    String textConfig;
+
+    @Autowired
+    Environment environment;
+
     private final Logger logger = LoggerFactory.getLogger(ItemController.class);
 
 
     @GetMapping("/all")
     public Flux<Item> getAllProducts(){
         return iProductService.findAll();
+    }
+
+    @GetMapping("/configs")
+    public Flux<HashMap<String, Object>> getAllConfigs(@Value("${server.port}") String port){
+        HashMap<String,Object> json = new HashMap<>();
+        json.put("textConfig",textConfig);
+        json.put("port",port);
+        if (environment.getActiveProfiles().length > 0 && environment.getActiveProfiles()[0].equals("dev")) {
+            json.put("name", environment.getProperty("configuration.developer.name"));
+        }
+        return Flux.just(json);
     }
 
     @GetMapping("/getItem")
@@ -53,7 +73,7 @@ public class ItemController {
     public Item metodoAlternativo(Long id, Integer cantidad, Throwable e) {
     	logger.info(e.getMessage());
         Product product  = new Product();
-        product.setProductCreateDate(new Date());
+        product.setProductCreateDate(null);
         product.setProductId(1L);
         product.setProductName("Camara sony");
         product.setProductPrice(1000.00);
@@ -64,7 +84,7 @@ public class ItemController {
     public CompletableFuture<Item> metodoAlternativo2(Long id, Integer cantidad, Throwable e) {
         logger.info(e.getMessage());
         Product product  = new Product();
-        product.setProductCreateDate(new Date());
+        product.setProductCreateDate(null);
         product.setProductId(1L);
         product.setProductName("Camara sony");
         product.setProductPrice(1000.00);

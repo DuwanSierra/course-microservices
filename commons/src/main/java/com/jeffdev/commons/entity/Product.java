@@ -1,4 +1,4 @@
-package com.jeffdev.microserviceproducts.data.entity;
+package com.jeffdev.commons.entity;
 
 
 import org.springframework.data.annotation.Id;

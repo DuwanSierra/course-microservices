@@ -1,5 +1,6 @@
 package com.jeffdev.microserviceitems.models;
 
+import com.jeffdev.commons.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

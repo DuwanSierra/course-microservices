@@ -1,8 +1,9 @@
 package com.jeffdev.microserviceproducts.services.implementation;
 
-import com.jeffdev.microserviceproducts.data.entity.Product;
+
 import com.jeffdev.microserviceproducts.data.repository.IProductRepository;
 import com.jeffdev.microserviceproducts.services.interfaces.IProductService;
+import com.jeffdev.commons.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

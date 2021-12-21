@@ -2,7 +2,7 @@ package com.jeffdev.microserviceproducts.controllers;
 
 import java.util.concurrent.TimeUnit;
 
-import com.jeffdev.microserviceproducts.data.entity.Product;
+import com.jeffdev.commons.entity.Product;
 import com.jeffdev.microserviceproducts.services.interfaces.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

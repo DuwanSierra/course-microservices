@@ -1,7 +1,6 @@
 package com.jeffdev.microserviceitems.comunication.feing;
 
-import com.jeffdev.microserviceitems.models.Product;
-
+import com.jeffdev.commons.entity.Product;
 import reactivefeign.spring.config.ReactiveFeignClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
